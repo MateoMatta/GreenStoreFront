@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Status from './auth/Status'
 
 export default class Navbar extends Component {
   render() {
@@ -25,14 +26,7 @@ export default class Navbar extends Component {
 
           <div className="navbar-end">
             <div className="navbar-item">
-              <div className="buttons">
-                <a href="/register" className="button is-primary">
-                  <strong>Register</strong>
-                </a>
-                <a href="/login" className="button is-light">
-                  Log in
-                </a>
-              </div>
+              <Status></Status>
             </div>
           </div>
         </div>

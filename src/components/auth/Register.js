@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidation";
+import UserPool from './UserPool'
 
 class Register extends Component {
   state = {
-    username: "",
     email: "",
     password: "",
     confirmpassword: "",
@@ -25,7 +25,7 @@ class Register extends Component {
     });
   }
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
 
     // Form validation
@@ -36,8 +36,17 @@ class Register extends Component {
         errors: { ...this.state.errors, ...error }
       });
     }
-
+    console.log('entro')
     // AWS Cognito integration here
+    const poolData = {
+      UserPoolId: 'us-east-1_X7PTssBYT',
+      ClientId: '6u0hnse8s3f4ho5193ca27e0ia'
+    }
+
+    UserPool.signUp(this.state.email,this.state.password,[],null,(err,data)=>{
+      if(err) console.error(err);
+      console.log(data)
+    })
   };
 
   onInputChange = event => {
@@ -55,19 +64,6 @@ class Register extends Component {
           <FormErrors formerrors={this.state.errors} />
 
           <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <p className="control">
-                <input 
-                  className="input" 
-                  type="text"
-                  id="username"
-                  aria-describedby="userNameHelp"
-                  placeholder="Enter username"
-                  value={this.state.username}
-                  onChange={this.onInputChange}
-                />
-              </p>
-            </div>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
                 <input 
@@ -119,10 +115,11 @@ class Register extends Component {
                 <a href="/forgotpassword">Forgot password?</a>
               </p>
             </div>
+            
             <div className="field">
               <p className="control">
-                <button className="button is-success">
-                  Register
+                <button type='submit' className="button is-success">
+                      Register
                 </button>
               </p>
             </div>
