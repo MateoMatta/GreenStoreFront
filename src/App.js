@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Products from './components/Products';
+import Clients from './components/Clients';
 import ProductAdmin from './components/ProductAdmin';
 import LogIn from './components/auth/LogIn';
 import Register from './components/auth/Register';
@@ -27,6 +28,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/products" component={Products} />
+              <Route exact path="/clients" component={Clients} />
               <Route exact path="/admin" component={ProductAdmin} />
               <Route exact path="/login" component={LogIn} />
               <Route exact path="/register" component={Register} />

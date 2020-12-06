@@ -51,9 +51,13 @@ export default class ProductAdmin extends Component {
               >save</button>
             </div>
           : <div>
-              <p className="product-title">{ this.props.name }</p>
+            <div>
+            <p className="product-title">{ this.props.name }</p>
               <p className="product-id">id: { this.props.id }</p>
+              <p className="product-id">Price: $ { this.props.price}</p>
+              <img src="panel.jpg"></img>
             </div>
+            </div> 
         }
       </div>
     )

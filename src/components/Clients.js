@@ -14,11 +14,9 @@ export default class Products extends Component {
     // add call to AWS API Gateway to fetch products here
     // then set them in state
     try {
-      //const res = await axios.get(`${config.api.invokeUrl}/products`);
-      //const products = res.data;
-      const products = [{id: 1, productname: "Panel Solar", price: "2500"},{id: 2, productname: "Motor a gas", price: "1500"}]
+      const res = await axios.get(`${config.api.invokeUrl}/products`);
+      const products = res.data;
       this.setState({ products: products });
-      console.log(this.state.products)
     } catch (err) {
       console.log(`An error has occurred: ${err}`);
     }
@@ -33,8 +31,8 @@ export default class Products extends Component {
       <Fragment>
         <section className="section">
           <div className="container">
-            <h1>Energy Products</h1>
-            <p className="subtitle is-5">Invest in a clean future with our efficient and cost-effective green energy products:</p>
+            <h1>Clients</h1>
+            <p className="subtitle is-5">Information about registered clients:</p>
             <br />
             <div className="columns">
               <div className="column">
@@ -42,13 +40,16 @@ export default class Products extends Component {
                   <div className="tile is-4 is-parent  is-vertical">
                     { 
                       this.state.products && this.state.products.length > 0
-                      ? this.state.products.map(product => <Product name={product.productname} id={product.id} price={product.price} key={product.id} />)
-                      : <div className="tile notification is-warning">No products available</div>
+                      ? this.state.products.map(product => <Product name={product.productname} id={product.id} key={product.id} />)
+                      : <div className="tile notification is-warning">No clients available</div>
                     }
                   </div>
                 </div>
               </div>
             </div>
+            <a href="/admin" className="button is-primary">
+                  <strong>Add client</strong>
+                </a>
           </div>
         </section>
       </Fragment>
