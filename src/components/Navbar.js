@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Status from './auth/Status'
+import ClientsNavBar from './ClientsNavBar'
 
 export default class Navbar extends Component {
   render() {
@@ -19,9 +20,8 @@ export default class Navbar extends Component {
             <a href="/products" className="navbar-item">
               Products
             </a>
-            <a href="/clients" className="navbar-item">
-              Clients
-            </a>
+            
+            <ClientsNavBar></ClientsNavBar>
           </div>
 
           <div className="navbar-end">

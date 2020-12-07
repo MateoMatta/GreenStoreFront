@@ -6,17 +6,38 @@ import {CognitoUser, AuthenticationDetails} from 'amazon-cognito-identity-js'
 const AccountContext = createContext();
 
 const Account = props => {
-
     const getSession = async () => {
-        await new Promise((resolve, reject) => {
+        return await new Promise((resolve, reject) => {
             const user = Pool.getCurrentUser();
 
             if(user){
-                user.getSession((err,session) =>{
+                user.getSession(async (err,session) =>{
                     if(err){
                         reject()
                     }else{
-                        resolve(session);
+                        const attributes = await new Promise ((resolve, reject) => {
+                            user.getUserAttributes((err, attributes) => {
+                                if(err){
+                                    reject(err)
+                                }else{
+
+                                    const attr = {}
+
+                                    for(let attribute of attributes){
+                                        const {Name, Value} = attribute;
+                                        attr[Name] = Value;
+                                    }
+
+                                    
+
+                                    resolve(attr)
+                                }
+                            })
+                        })
+                        resolve({
+                            ...session,
+                            ...attributes    
+                        });
                     }
 
                 })
@@ -36,7 +57,7 @@ const Account = props => {
 
     const authenticate = async (Username, Password) => {
 
-        await new Promise((resolve, reject) => {
+        return await new Promise((resolve, reject) => {
 
             const user = new CognitoUser({Username, Pool});
     
@@ -45,7 +66,7 @@ const Account = props => {
             user.authenticateUser(authDetails, {
         
                 onSuccess: data => {
-                console.error('onSuccess', data)
+                console.log('onSuccess', data)
                 resolve(data)
                 },
                 onFailure: err => {

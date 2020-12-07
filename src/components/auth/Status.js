@@ -5,19 +5,22 @@ export default () => {
 
     const [ status, setStatus ] = useState(false)
     const { getSession, logout } = useContext(AccountContext)
+    const [username,setUsername] = useState('');
 
     useEffect(() => {
         getSession()
             .then(session => {
                 console.log('Session:', session)
                 setStatus(true)
+                setUsername(session.email)
             })
     })
 
     return(
         <div>
             {status ? (
-                <div>
+                <div className="navbar-start">
+                    <p style={{marginLeft:"1%"}}>{username}</p>
                     <button onClick={logout} className="button is-primary">Sign Out</button>
                 </div>
             ) : (

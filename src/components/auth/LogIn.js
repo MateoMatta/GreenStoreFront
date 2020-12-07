@@ -1,6 +1,7 @@
 import React, {  useContext, useState } from 'react';
-import FormErrors from "../FormErrors";
+import { withRouter } from 'react-router-dom';
 import {AccountContext} from './Accounts';
+import { Link } from 'react-router-dom';
 
 export default () =>{
 
@@ -18,7 +19,6 @@ export default () =>{
       }).catch(err => {
         console.log('Failed to Login!', err);
       })
-
   };
 
   return (
@@ -72,3 +72,4 @@ export default () =>{
     </section>
   );
 };
+

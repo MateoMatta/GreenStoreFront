@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Products from './components/Products';
 import Clients from './components/Clients';
-import ProductAdmin from './components/ProductAdmin';
+import ProductAdmin from './components/ClientAdmin';
 import LogIn from './components/auth/LogIn';
 import Register from './components/auth/Register';
 import ForgotPassword from './components/auth/ForgotPassword';
