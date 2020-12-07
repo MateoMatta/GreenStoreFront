@@ -39,7 +39,15 @@ export default class clients extends Component {
                   <div className="tile is-4 is-parent  is-vertical">
                     { 
                       this.state.clients && this.state.clients.length > 0
-                      ? this.state.clients.map(client => <client name={client.clientname} id={client.id} key={client.id} />)
+                      ? this.state.clients.map(client => 
+                      <client 
+                          name={client.firstName}
+                          lastName={client.lastName}
+                          id={client.id}
+                          contactInformation={client.contactInformation}
+                          deliveryAddress={client.deliveryAddress}
+                          key={client.id}
+                        />)
                       : <div className="tile notification is-warning">No clients available</div>
                     }
                   </div>
